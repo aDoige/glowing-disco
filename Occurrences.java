@@ -15,46 +15,37 @@ public class Occurrences {
          
       }
       
-      Count();
+      Count(numbers);
        
             
    } // END METHOD Main
    
-   public static void Count() {
-   
-      int [] numbers = new int [10];
-      int [] integers = new int [10];
+   public static void Count(int [] numbers) {
+      
       int [] occurrences = new int [10];
-      int value = 0;  
+      int count = 0;
+      int k = 0;
    
-      for (int i = 0; i < integers.length; i++) {
-         value++; 
-         boolean unique = true; 
-      
-         for (int k : numbers) {
-            if (k == numbers[i]) {
-               unique = false;
-               break;
-            } // END IF
-         } // END FOR EACH
-         
-         if (unique == true) {
-            for (int j = i + 1; j < numbers.length; j++) {
-               if (integers[i] == numbers[i]) {
-                  value++;
-               } // END IF
-            
-               integers[i] = numbers[i];
-               occurrences[i] = value; 
-            } // END FOR
-         
-         } // END IF 
-      
-      } // END OUTER FOR Loop 
+      for (int i = 0; i < occurrences.length; i++) {
+         occurrences [i] = - 1;
+      }
    
       for (int i = 0; i < numbers.length; i++) {
-         System.out.println(integers[i] + " occurred " + occurrences[i] + " time(s)");
-      
+         count = 1;
+            for (int j = i+1; j < numbers.length; j++) {
+               if (numbers[i] == numbers[j]) { 
+                  count++;
+                  occurrences[j] = 0; }
+            }
+         if (occurrences[i] != 0) {
+            occurrences[i] = count; 
+         }
+      }
+      for (int i = 0; i < occurrences.length; i++) {
+         if (occurrences[i] != 0) {
+            System.out.println(numbers[i] + " occurred " + occurrences[i] + " time(s)");
+         }
+         
       } // END FOR
    
    } // END METHOD Count
